@@ -5,10 +5,10 @@ version = "1.1.0"
 license = { file = "LICENSE" }
 
 [project.urls]
-Repository = "https://github.com/replicate/comfyui-replicate"
+Repository = "https://github.com/Woovl/woovl-comfyui-replicate"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = "fofr"
-DisplayName = "ComfyUI-Replicate"
+PublisherId = "Woovl"
+DisplayName = "Woovl-ComfyUI-Replicate"
 Icon = ""
