@@ -1,4 +1,3 @@
-```markdown
 # Woovl ComfyUI Replicate Integration Is a fork of the original ComfyUI Replicate Integration
 We're aim to make it easier to use Replicate models in ComfyUI, specially if you need to attach a LoRA.
 
@@ -72,4 +71,3 @@ The Woovl team is actively working on expanding the capabilities of this integra
 ## Contributing to the Woovl Ecosystem
 
 We encourage community contributions! If you integrate models that you believe would benefit other users, please feel free to submit pull requests. Your contributions help make the Woovl ComfyUI Replicate integration even more powerful.
-```
