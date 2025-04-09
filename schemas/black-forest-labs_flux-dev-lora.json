@@ -1,7 +1,7 @@
 {
-    "url": "https://replicate.com/black-forest-labs/flux-dev",
+    "url": "https://replicate.com/black-forest-labs/flux-dev-lora",
     "owner": "black-forest-labs",
-    "name": "flux-dev",
+    "name": "flux-dev-lora",
     "description": "A 12 billion parameter rectified flow transformer capable of generating images from text descriptions",
     "visibility": "public",
     "github_url": "https://github.com/replicate/cog-flux",
@@ -16,6 +16,7 @@
         "status": "succeeded",
         "input": {
             "prompt": "black forest gateau cake spelling out the words \"FLUX DEV\", tasty, food photography, dynamic shot",
+            "hf_loras": "lora_url",
             "go_fast": true,
             "guidance": 3.5,
             "num_outputs": 1,
@@ -23,8 +24,7 @@
             "output_format": "webp",
             "output_quality": 80,
             "prompt_strength": 0.8,
-            "num_inference_steps": 28,
-            "api_key" : ""
+            "num_inference_steps": 28
         },
         "output": [
             "https://replicate.delivery/yhqm/xU3wLlAQcGpZLVQipTVxaZMaL4omk9n7d1suU0byMnngfQvJA/out-0.webp"
@@ -278,12 +278,6 @@
                                 "x-order": 7,
                                 "description": "Random seed. Set for reproducible generation"
                             },
-                            "api_key":{
-                                "type": "string",
-                                "title": "api_key",
-                                "x-order": 0,
-                                "description": "Replicate API Key"
-                            },
                             "image": {
                                 "type": "string",
                                 "title": "Image",
@@ -296,6 +290,21 @@
                                 "title": "Prompt",
                                 "x-order": 0,
                                 "description": "Prompt for generated image"
+                            },
+                            "lora_scale": {
+                                "type": "number",
+                                "title": "Lora Scale",
+                                "default": 1,
+                                "maximum": 1,
+                                "minimum": 0,
+                                "x-order": 10,
+                                "description": "How strong the LoRA will be"
+                            },
+                            "lora_weights": {
+                                "type": "string",
+                                "title": "Custom Lora Url",
+                                "x-order": 9,
+                                "description": "Load LoRA weights. Supports Replicate models in the format <owner>/<username> or <owner>/<username>/<version>, HuggingFace URLs in the format huggingface.co/<owner>/<model-name>, CivitAI URLs in the format civitai.com/models/<id>[/<model-name>], or arbitrary .safetensors URLs from the Internet. For example, 'fofr/flux-pixar-cars'"
                             },
                             "go_fast": {
                                 "type": "boolean",

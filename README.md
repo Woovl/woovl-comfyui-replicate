@@ -1,66 +1,75 @@
-# comfyui-replicate
+```markdown
+# Woovl ComfyUI Replicate Integration Is a fork of the original ComfyUI Replicate Integration
+We're aim to make it easier to use Replicate models in ComfyUI, specially if you need to attach a LoRA.
 
-Custom nodes for running [Replicate models](https://replicate.com/explore) in ComfyUI.
+Effortlessly integrate and run cutting-edge [Replicate models](https://replicate.com/explore) within your ComfyUI workflows using this custom node package, proudly brought to you by [Woovl](https://woovl.com).
 
-Take a look at the [example workflows](https://github.com/replicate/comfyui-replicate/tree/main/example_workflows) and the [supported Replicate models](https://github.com/replicate/comfyui-replicate/blob/main/supported_models.json) to get started.
+Explore the power of AI with ease! Check out our [example workflows](https://github.com/replicate/comfyui-replicate/tree/main/example_workflows) and the list of [supported Replicate models](https://github.com/replicate/comfyui-replicate/blob/main/supported_models.json) to get started on your creative journey.
 
 ![example-screenshot](https://github.com/replicate/comfyui-replicate/assets/319055/0eedb026-de3e-402a-b8fc-0a14c2fd209e)
 
-## Set your Replicate API token before running
+## Before You Begin: Setting Your Replicate API Token
 
-Make sure you set your REPLICATE_API_TOKEN in your environment. Get your API tokens here, we recommend creating a new one:
+To unlock the full potential of this integration, ensure you have your Replicate API token set as an environment variable. You can obtain your API tokens (we recommend creating a new one for this integration) here:
 
 https://replicate.com/account/api-tokens
 
-To pass in your API token when running ComfyUI you could do:
+Here's how to pass your API token when launching ComfyUI:
 
-On MacOS or Linux:
-
+**On MacOS or Linux:**
 ```sh
 export REPLICATE_API_TOKEN="r8_************"; python main.py
 ```
 
-On Windows:
-
+**On Windows:**
 ```sh
 set REPLICATE_API_TOKEN="r8_************"; python main.py
 ```
 
-## Direct installation
+## Installation with Woovl
+
+Integrate Woovl ComfyUI Replicate into your ComfyUI setup with these simple steps:
 
 ```sh
 cd ComfyUI/custom-nodes
-git clone https://github.com/replicate/comfyui-replicate
-cd comfyui-replicate
+git clone [https://github.com/replicate/comfyui-replicate](https://github.com/replicate/comfyui-replicate) woovl-comfyui-replicate
+cd woovl-comfyui-replicate
 pip install -r requirements.txt
 ```
 
-## Supported Replicate models
+## Discover Supported Replicate Models
 
-View the `supported_models.json` to see which models are packaged by default.
+Refer to the `supported_models.json` file to view the list of Replicate models that are included by default with this Woovl integration.
 
-## Update Replicate models
+## Keeping Your Models Up-to-Date
 
-Simply run `./import_schemas.py` to update all model nodes. The latest version of a model is used by default.
+Easily update the available Replicate model nodes by running the following command:
 
-## Add more models
+```sh
+./import_schemas.py
+```
 
-Only models that return simple text or image outputs are currently supported. If a model returns audio, video, JSON objects or a combination of outputs, the node will not work as expected.
+This script will fetch the latest model versions automatically.
 
-If you want to add more models, you can:
+## Expanding Model Capabilities
 
-- add the model to `supported_models.json` (for example, `fofr/consistent-character`)
-- run `./import_schemas.py`, this will update all schemas and import your new model
-- restart ComfyUI
-- use the model in workflow, it’ll have the title ‘Replicate [model author/model name]’
+Currently, this Woovl integration supports Replicate models that produce straightforward text or image outputs. Models generating audio, video, JSON objects, or mixed outputs may not function as expected at this time.
 
-## Roadmap
+To incorporate additional compatible models:
 
-Things to investigate and add to this custom node package:
+- Add the desired model details to the `supported_models.json` file (e.g., `fofr/consistent-character`).
+- Execute `./import_schemas.py` to refresh the schemas and import your new model.
+- Restart your ComfyUI instance.
+- The new model will now be available in your workflows with the title ‘Replicate [model author/model name]’.
 
-- support for more types of Replicate model (audio and video first)
-- showing logs, prediction status and progress (via tqdm)
+## Future Enhancements by Woovl
 
-## Contributing
+The Woovl team is actively working on expanding the capabilities of this integration, with future updates potentially including:
 
-If you add models that others would find useful, feel free to raise PRs.
+- Support for a wider range of Replicate model output types, prioritizing audio and video.
+- Displaying real-time logs, prediction status, and progress updates (possibly using `tqdm`).
+
+## Contributing to the Woovl Ecosystem
+
+We encourage community contributions! If you integrate models that you believe would benefit other users, please feel free to submit pull requests. Your contributions help make the Woovl ComfyUI Replicate integration even more powerful.
+```

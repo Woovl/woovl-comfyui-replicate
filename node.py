@@ -17,13 +17,13 @@ from .schema_to_node import (
     inputs_that_need_arrays,
 )
 
+replicate_api_key = os.environ.get("REPLICATE_API_KEY")
 replicate = Client(headers={"User-Agent": "comfyui-replicate/1.0.1"})
 
 
 def create_comfyui_node(schema):
     replicate_model, node_name = name_and_version(schema)
     return_type = get_return_type(schema)
-
     class ReplicateToComfyUI:
         @classmethod
         def IS_CHANGED(cls, **kwargs):
@@ -53,6 +53,7 @@ def create_comfyui_node(schema):
                     elif input_type == "AUDIO":
                         kwargs[key] = self.audio_to_base64(value)
 
+        
         def image_to_base64(self, image):
             if isinstance(image, torch.Tensor):
                 image = image.permute(0, 3, 1, 2).squeeze(0)
@@ -180,7 +181,19 @@ def create_comfyui_node(schema):
                     elif not kwargs[key]:
                         del kwargs[key]
 
+        def set_api_key(self, kwargs):
+            if "replicate_api_key" in kwargs:
+                global replicate
+                os.environ["REPLICATE_API_TOKEN"] = kwargs["replicate_api_key"]
+                # Reinitialize the replicate client with the new API key
+                replicate = Client(headers={"User-Agent": "comfyui-replicate/1.0.1"})
+                # print("New Replicate client initialized with token:", replicate.api_token)
+                del kwargs["replicate_api_key"]
+                
+                
+
         def run_replicate_model(self, **kwargs):
+            self.set_api_key(kwargs)
             self.handle_array_inputs(kwargs)
             self.remove_falsey_optional_inputs(kwargs)
             self.convert_input_images_to_base64(kwargs)

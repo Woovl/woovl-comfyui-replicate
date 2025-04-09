@@ -42,7 +42,7 @@ def name_and_version(schema):
     author = schema["owner"]
     name = schema["name"]
     version = schema["latest_version"]["id"]
-    replicate_model = f"{author}/{name}:{version}"
+    replicate_model = f"{author}/{name}"
     node_name = f"Replicate {author}/{name}"
     return replicate_model, node_name
 
@@ -62,6 +62,20 @@ def resolve_schema(prop_data, openapi_schema):
 def schema_to_comfyui_input_types(schema):
     openapi_schema = schema["latest_version"]["openapi_schema"]
     input_schema = openapi_schema["components"]["schemas"]["Input"]
+    
+    # print("Input Schema:", input_schema)
+    # Add API Key Input
+    api_key_input = {
+        "type": "string",
+        "title": "Replicate API Key",
+        "x-order": 0,
+        "default": "API KEY",
+        "description": "Replicate API Key",
+    }
+
+
+    # print("API Key Input:", api_key_input)
+    input_schema["properties"]["replicate_api_key"] = api_key_input
     input_types = {"required": {}, "optional": {}}
     default_example_input = get_default_example_input(schema)
 
